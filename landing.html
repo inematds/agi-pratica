@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Super-Agentes · INEMA.CLUB PRO</title>
+<meta name="description" content="Da IA que responde à IA que trabalha: 8 aulas para delegar responsabilidades reais a agentes de IA, sem programar. Saia com o seu agente especificado, controlado, medido e pronto para virar equipe.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E0D14;--bg2:#15131d;--panel:#1a1824;--ink:#ECE6D9;--ink-soft:#C7C2D0;--muted:#948DA6;--faint:#6C6580;
+    --line:#2A2637;--line2:#37324a;--accent:#7CE0C6;--accent-ink:#0E0D14;--warm:#F2B45C;
+    --serif:"Newsreader",Georgia,serif;--sans:"Inter",system-ui,sans-serif;--mono:"Space Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 clamp(24px,5vw,60px)}
+  header.top{padding:26px 0}
+  header.top .wrap{display:flex;align-items:center;gap:10px}
+  header.top .mark{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--accent);text-decoration:none;font-weight:700}
+  header.top .pro{background:var(--accent);color:var(--accent-ink);border-radius:4px;padding:2px 6px;font-size:9.5px;font-weight:700;letter-spacing:.1em;text-decoration:none;margin-left:8px}
+  header.top .course{color:var(--muted);font-size:12px;letter-spacing:.04em;border-left:1px solid var(--line2);padding-left:10px;margin-left:2px;font-family:var(--mono)}
+  .hero{position:relative;padding:10vh 0 9vh;border-bottom:1px solid var(--line);overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;z-index:0;background:radial-gradient(55% 48% at 80% 20%,rgba(124,224,198,.14),transparent 60%),radial-gradient(40% 40% at 15% 90%,rgba(242,180,92,.08),transparent 60%),radial-gradient(90% 90% at 50% 40%,var(--bg2),var(--bg) 72%)}
+  .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(240px,.8fr);gap:40px;align-items:center}
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin:0 0 18px}
+  h1{font-family:var(--serif);font-weight:500;font-size:clamp(36px,6vw,64px);line-height:1.05;letter-spacing:-.02em;margin:0 0 22px;max-width:18ch}
+  h1 em{font-style:italic;color:var(--accent)}
+  .lead{font-family:var(--serif);font-size:clamp(18px,2vw,22px);line-height:1.55;color:var(--ink-soft);max-width:46ch;margin:0 0 34px}
+  .cta{display:inline-block;font-family:var(--mono);font-size:13px;letter-spacing:.06em;background:var(--accent);color:var(--accent-ink);text-decoration:none;border-radius:99px;padding:15px 26px;font-weight:700}
+  .cta:hover{opacity:.92}
+  .sub{color:var(--muted);font-size:13.5px;margin-top:14px;font-family:var(--mono)}
+  .herofig svg{width:100%;height:auto;display:block}
+
+  section{padding:8vh 0}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+  h2{font-family:var(--serif);font-weight:500;font-size:clamp(26px,3.6vw,36px);margin:0 0 28px}
+
+  .resultados{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+  .resultado{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:22px 24px}
+  .resultado p{margin:0;font-size:15px;color:var(--ink-soft);line-height:1.55}
+  .resultado p b{color:var(--ink)}
+  .resultado .n{font-family:var(--serif);font-size:28px;color:var(--accent);line-height:1;margin:0 0 10px}
+
+  .tese{border:1px solid var(--line2);border-left:3px solid var(--warm);border-radius:12px;background:var(--panel);padding:24px 28px;font-family:var(--serif);font-size:clamp(19px,2.2vw,24px);line-height:1.45;color:var(--ink);max-width:60ch}
+  .tese small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:14px}
+
+  .aulas{display:grid;gap:14px}
+  .au{display:grid;grid-template-columns:52px 1fr auto;gap:18px;align-items:center;text-decoration:none;color:inherit;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px 22px}
+  .au .num{font-family:var(--serif);font-size:26px;color:var(--accent);text-align:center}
+  .au h3{font-family:var(--serif);font-weight:500;font-size:19px;margin:0 0 4px}
+  .au p{margin:0;color:var(--muted);font-size:14px}
+  .au .meta{font-family:var(--mono);font-size:11px;color:var(--accent);white-space:nowrap;text-align:right}
+  .au:hover{border-color:var(--accent)}
+
+  .publico{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .publico .col{background:var(--panel);padding:22px 24px}
+  .publico .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;margin:0 0 12px}
+  .publico .col.sim .lbl{color:var(--accent)}
+  .publico .col.nao .lbl{color:var(--muted)}
+  .publico ul{margin:0;padding:0;list-style:none}
+  .publico li{position:relative;padding-left:20px;margin:0 0 10px;color:var(--ink-soft);font-size:14.5px;line-height:1.5}
+  .publico li::before{content:"—";position:absolute;left:0;color:var(--faint)}
+
+  .fontes{columns:2;column-gap:32px;font-size:13.5px;color:var(--muted);line-height:1.6}
+  .fontes li{break-inside:avoid;margin:0 0 6px}
+
+  footer{border-top:1px solid var(--line);padding:6vh 0 8vh;color:var(--faint);text-align:center;font-family:var(--serif);font-style:italic}
+
+  @media(max-width:820px){ .hero .wrap{grid-template-columns:1fr} .herofig{max-width:320px} .fontes{columns:1} }
+  @media(max-width:720px){ .publico{grid-template-columns:1fr} .au{grid-template-columns:44px 1fr} .au .meta{grid-column:2;text-align:left} }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <a class="mark" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+  <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  <span class="course">Super-Agentes</span>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div>
+    <p class="kicker">AGI chegou? · agentes para o seu trabalho</p>
+    <h1>Da IA que responde à <em>IA que trabalha</em></h1>
+    <p class="lead">Em 8 aulas, você pega uma responsabilidade real da sua área e entrega a um agente de IA do jeito certo: com identidade, memória, ferramentas, alçada, ficha de confiança e, no fim, uma equipe. O mesmo agente cresce a cada aula. Sem programar, sem vídeo, no seu tempo.</p>
+    <a class="cta" href="curso.html#trilha">começar agora →</a>
+    <p class="sub">~25 min por aula · nada para baixar · funciona no celular e no computador</p>
+  </div>
+  <div class="herofig"><svg viewBox="0 0 300 240" fill="none" aria-hidden="true">
+    <rect x="28" y="40" width="104" height="150" rx="6" fill="#ECE6D9" opacity=".9"/>
+    <rect x="28" y="40" width="104" height="18" rx="6" fill="#948DA6"/>
+    <path d="M44 78 h60 M44 96 h70 M44 114 h52 M44 132 h66 M44 150 h48 M44 168 h58" stroke="#0E0D14" stroke-width="2.5" stroke-linecap="round" opacity=".6"/>
+    <path d="M36 74 l4 4 6 -8 M36 92 l4 4 6 -8 M36 128 l4 4 6 -8" stroke="#7CE0C6" stroke-width="2" fill="none"/>
+    <path d="M60 30 q20 -14 40 0" stroke="#948DA6" stroke-width="3" fill="none"/>
+    <path d="M160 70 h110 v120 h-110 z" fill="#F2B45C" opacity=".92"/>
+    <path d="M160 70 h44 l10 -12 h56 v12" fill="#F2B45C"/>
+    <rect x="176" y="104" width="78" height="22" rx="3" fill="#ECE6D9"/>
+    <path d="M184 115 h60" stroke="#0E0D14" stroke-width="2.5" stroke-linecap="round" opacity=".7"/>
+    <path d="M176 146 h70 M176 160 h52" stroke="#0E0D14" stroke-width="2" stroke-linecap="round" opacity=".35"/>
+    <circle cx="138" cy="118" r="4" fill="#7CE0C6"/>
+    <path d="M118 118 h14 M146 118 h10" stroke="#7CE0C6" stroke-width="2"/>
+    <path d="M152 115 l5 3 -5 3" stroke="#7CE0C6" stroke-width="2" fill="none"/>
+    <path d="M28 212 h244" stroke="#948DA6" stroke-width="2" opacity=".5"/>
+  </svg></div>
+</div></section>
+
+<section><div class="wrap">
+  <p class="eyebrow">A tese</p>
+  <div class="tese">Você não precisa mais fazer tudo. Precisa aprender a comandar quem faz.<small>Prompt → contexto → agente → responsabilidade → equipe de agentes → organização agêntica</small></div>
+</div></section>
+
+<section><div class="wrap">
+  <p class="eyebrow">O que você sai sabendo fazer</p>
+  <h2>Um agente, seis entregas</h2>
+  <div class="resultados">
+    <div class="resultado"><p class="n">1</p><p><b>Mapa de autonomia</b> — dez atividades do seu trabalho classificadas de 0 a 5, e a que vira o seu agente.</p></div>
+    <div class="resultado"><p class="n">2</p><p><b>Agente persistente</b> — ficha em cinco blocos, rodando num chat de IA, que para numa sexta e retoma na segunda.</p></div>
+    <div class="resultado"><p class="n">3</p><p><b>Mapa de delegação</b> — o que fica humano, o que vai para IA, o que vira responsabilidade de agente, com critério e indicador.</p></div>
+    <div class="resultado"><p class="n">4</p><p><b>Matriz de autonomia</b> — o que ele faz sozinho, o que pede aprovação, o que nunca faz, e o botão de desligar.</p></div>
+    <div class="resultado"><p class="n">5</p><p><b>Ficha de confiança</b> — cinco números por semana no lugar de "funcionou?", e a decisão de ampliar ou reduzir.</p></div>
+    <div class="resultado"><p class="n">6</p><p><b>Empresa agêntica</b> — o manual do gestor e o desenho da equipe: diretor, especialistas, avaliador e você decidindo no fim.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <p class="eyebrow">Para quem é</p>
+  <h2>Feito para quem gerencia, não para quem programa</h2>
+  <div class="publico">
+    <div class="col sim">
+      <p class="lbl">é para você se</p>
+      <ul>
+        <li>Você é gestora de RH, coordenador de marketing, supervisora de atendimento, dono de loja ou responsável por uma área, e já usa IA de chat para tarefas soltas.</li>
+        <li>Você quer que a IA assuma uma responsabilidade contínua da sua área, com controle, e não só "ajude a escrever".</li>
+        <li>Você nunca programou, não usa linha de comando e prefere aprender fazendo, no seu ritmo.</li>
+      </ul>
+    </div>
+    <div class="col nao">
+      <p class="lbl">não é para você se</p>
+      <ul>
+        <li>Você quer construir agentes em código: este curso é sobre delegar, controlar e gerenciar, não sobre programar.</li>
+        <li>Você procura um curso com vídeo-aula tradicional. Aqui é leitura ativa, com prática e revisão embutidas.</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <p class="eyebrow">Trilha</p>
+  <h2>Um agente que cresce aula a aula</h2>
+  <div class="aulas">
+    <a class="au" href="curso.html#aula-1"><div class="num">1</div><div><h3>Da IA que responde à IA que age</h3><p>Chatbot, automação, fluxo e agente; objetivo no lugar de instrução; a régua de 0 a 5 e o seu mapa de autonomia.</p></div><div class="meta">24 min</div></a>
+    <a class="au" href="curso.html#aula-2"><div class="num">2</div><div><h3>Um agente precisa saber quem é e o que já aconteceu</h3><p>De prompt a contexto: instruções permanentes, janela, arquivo, memória e o registro de progresso. A ficha do seu agente.</p></div><div class="meta">24 min</div></a>
+    <a class="au" href="curso.html#aula-3"><div class="num">3</div><div><h3>As mãos do agente: ferramentas, MCP e trabalho longo</h3><p>Ferramentas, a tomada padrão MCP, uso do computador pela tela, rodadas e retomada dias depois. O agente persistente rodando.</p></div><div class="meta">25 min</div></a>
+    <a class="au" href="curso.html#aula-4"><div class="num">4</div><div><h3>Delegue responsabilidades, não tarefas</h3><p>Onde procurar responsabilidades, os três filtros, critério, indicador, prazo e as três faixas. O mapa de delegação.</p></div><div class="meta">25 min</div></a>
+    <a class="au" href="curso.html#aula-5"><div class="num">5</div><div><h3>Até onde o agente pode ir</h3><p>Menor privilégio, identidade própria, os três ataques, a matriz de autonomia, reversão e o botão de desligar.</p></div><div class="meta">25 min</div></a>
+    <a class="au" href="curso.html#aula-6"><div class="num">6</div><div><h3>"Funcionou?" não basta: a ficha de confiança</h3><p>Registro, especificar-medir-melhorar, as cinco perguntas, a amostra com critério e a decisão sobre a autonomia.</p></div><div class="meta">24 min</div></a>
+    <a class="au" href="curso.html#aula-7"><div class="num">7</div><div><h3>De executor a diretor de inteligência</h3><p>As oito competências do gestor de agentes e uma simulação em que você só pode delegar. O seu manual.</p></div><div class="meta">25 min</div></a>
+    <a class="au" href="curso.html#aula-8"><div class="num">8</div><div><h3>Equipes de super-agentes</h3><p>Quando o agente único chega ao limite, papéis, passagens, MCP e A2A, orquestração. O desenho da sua empresa agêntica.</p></div><div class="meta">25 min</div></a>
+  </div>
+  <p style="margin-top:28px"><a class="cta" href="curso.html#trilha">ver a trilha completa →</a></p>
+</div></section>
+
+<section><div class="wrap">
+  <p class="eyebrow">Fontes de referência</p>
+  <h2>De onde vem o conteúdo</h2>
+  <ul class="fontes">
+    <li>OpenAI — A practical guide to building AI agents · How agents are transforming work · Evals drive the next chapter of AI</li>
+    <li>Anthropic — Building effective agents · Effective context engineering for AI agents · Effective harnesses for long-running agents · Model Context Protocol</li>
+    <li>Google — Agent2Agent (A2A): a new era of agent interoperability</li>
+    <li>Microsoft — Work Trend Index: agents and human agency</li>
+    <li>NIST — Identity and authority for software agents</li>
+  </ul>
+</div></section>
+
+<footer><div class="wrap">Super-Agentes · INEMA.CLUB PRO</div></footer>
+
+</body>
+</html>
